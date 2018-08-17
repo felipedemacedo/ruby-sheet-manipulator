@@ -1,0 +1,1 @@
+ruby skip_whitespaces.rb && pause
