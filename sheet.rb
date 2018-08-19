@@ -57,18 +57,18 @@ class Sheet
         end
       end
       close_file()
+	  @data.shift() # removes HEADER from list of sheet lines
+	  print_debug()
       return @data
 	end
 
 	def load_as_array()
 	  load({:as_array => true})
-	  print_debug()
 	  return @data
 	end
 
 	def load_as_hash()
 	  load({:as_hash => true})
-	  print_debug()
 	  return @data
 	end
 
