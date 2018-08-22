@@ -31,20 +31,20 @@ dD;Ee;fF
 ### Point to the sheet file
 ```markdown
 sheet = Sheet.new("./example_sheets/skip_blank_lines/sheet.csv")
---------------------------------------------------------------------
+------------------------------------------------------
 #<Sheet:0xc2bbf78 @path="./example_sheets/skip_blank_lines/sheet.csv", @file=#<File:./example_sheets/skip_blank_lines/sheet.csv>, @column_separator=";">
 ```
 ### Point to the sheet file with custom column separator
 ```markdown
 sheet = Sheet.new("./example_sheets/skip_blank_lines/sheet.csv", ",")
---------------------------------------------------------------------
+------------------------------------------------------
 #<Sheet:0xc2bbf18 @path="./example_sheets/skip_blank_lines/sheet.csv", @file=#<File:./example_sheets/skip_blank_lines/sheet.csv>, @column_separator=",">
 ```
 ### Load the sheet into memory
 ```markdown
 sheet = Sheet.new("./example_sheets/skip_blank_lines/sheet.csv")
 sheet.load()
---------------------------------------------------------------------
+------------------------------------------------------
 ** LOADING 
   DATA: 
 ";;\n"
@@ -70,7 +70,7 @@ sheet.load()
 ```markdown
 sheet = Sheet.new("./example_sheets/skip_blank_lines/sheet.csv")
 sheet.load_as_array()
---------------------------------------------------------------------
+------------------------------------------------------
 ** LOADING AS ARRAY
   DATA: 
 ["", "", "\n"]
@@ -96,7 +96,7 @@ sheet.load_as_array()
 ```markdown
 sheet = Sheet.new("./example_sheets/skip_blank_lines/sheet.csv")
 sheet.load_as_hash()
---------------------------------------------------------------------
+------------------------------------------------------
 ** LOADING AS HASH
   DATA: 
 {"Col A"=>"", "Col B"=>"", "Col C"=>"\n"}
@@ -121,7 +121,7 @@ sheet.load_as_hash()
 ### Remove all blank lines from sheet
 ```markdown
 sheet.skip_blank_lines()
---------------------------------------------------------------------
+------------------------------------------------------
 ** BACKUP STORED !
 REMOVE_BLANK_LINES APPLIED !
   DATA: 
@@ -135,7 +135,7 @@ REMOVE_BLANK_LINES APPLIED !
 ### Get rid of leading and trailing whitespaces
 ```markdown
 sheet.skip_whitespaces()
---------------------------------------------------------------------
+------------------------------------------------------
 ** BACKUP STORED !
 REMOVE_WHITESPACES APPLIED !
   DATA: 
@@ -160,7 +160,7 @@ REMOVE_WHITESPACES APPLIED !
 ### Remove all line breaks
 ```markdown
 sheet.skip_line_breaks()
---------------------------------------------------------------------
+------------------------------------------------------
 ** BACKUP STORED !
 REMOVE_LINE_BREAKS APPLIED !
   DATA: 
@@ -185,7 +185,7 @@ REMOVE_LINE_BREAKS APPLIED !
 ### Remove similar lines
 ```markdown
 sheet.uniq()
---------------------------------------------------------------------
+------------------------------------------------------
 ** BACKUP STORED !
 UNIQ APPLIED !
   DATA: 
@@ -204,7 +204,7 @@ UNIQ APPLIED !
 ### Sort all lines of the sheet
 ```markdown
 sheet.sort()
---------------------------------------------------------------------
+------------------------------------------------------
 ** BACKUP STORED !
 SORT APPLIED !
   DATA: 
@@ -230,7 +230,7 @@ SORT APPLIED !
 ### UPCASE
 ```markdown
 sheet.upcase()
---------------------------------------------------------------------
+------------------------------------------------------
 ** BACKUP STORED !
 APPLY_UPCASE APPLIED !
   DATA: 
@@ -255,7 +255,7 @@ APPLY_UPCASE APPLIED !
 ### downcase
 ```markdown
 sheet.downcase()
---------------------------------------------------------------------
+------------------------------------------------------
 ** BACKUP STORED !
 APPLY_DOWNCASE APPLIED !
   DATA: 
@@ -280,7 +280,7 @@ APPLY_DOWNCASE APPLIED !
 ### Remove all numeric elements from the sheet.
 ```markdown
 sheet.skip_numeric()
---------------------------------------------------------------------
+------------------------------------------------------
 ** BACKUP STORED !
 REMOVE_NUMERICS APPLIED !
   DATA: 
@@ -306,7 +306,7 @@ REMOVE_NUMERICS APPLIED !
 ```markdown
 sheet.skip_numeric()
 sheet.rollback()
---------------------------------------------------------------------
+------------------------------------------------------
 ** BACKUP STORED !
 REMOVE_NUMERICS APPLIED !
   DATA: 
@@ -352,7 +352,7 @@ REMOVE_NUMERICS APPLIED !
 For instance: upcase, downcase, skip_line_breaks, skip_whitespaces, skip_numeric, skip_non_numeric
 ```markdown
 sheet.upcase([0,1])
---------------------------------------------------------------------
+------------------------------------------------------
 ****************************SPECIFIC COLUMNS: [0,1]
 ** BACKUP STORED !
 APPLY_UPCASE APPLIED !
