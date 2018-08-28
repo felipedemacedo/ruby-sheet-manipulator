@@ -291,7 +291,7 @@ end
 # USAGE EXAMPLES:
 
 sheet = Sheet.new("./example_sheets/skip_blank_lines/sheet.csv")
-sheet.load_as_array()
+sheet.load_as_hash()
 puts "Sheet Header: #{sheet.header.inspect}"
 
 #sheet.skip_blank_lines()
