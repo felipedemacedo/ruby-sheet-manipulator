@@ -207,9 +207,10 @@ class Sheet
 
 	private
 
-	def numeric?(str)
-		return Float(str) ? true : false rescue false
-	end
+    def numeric?(value)
+      return false if value.to_s.gsub(/\d/, '').length > 0 # remove all numeric characters and check if something remains
+      return true if Float(value) rescue false
+    end
 	
 	def apply_upcase(str)
 		return str.to_s.upcase
