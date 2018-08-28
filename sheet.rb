@@ -168,12 +168,16 @@ class Sheet
 		backup()
 		@data = @data.uniq
 		puts "UNIQ APPLIED !" if @@debug_mode_on
+		clean()
+		print_debug()
 	end
 
 	def sort()
 		backup()
 		@data = @data.sort
 		puts "SORT APPLIED !" if @@debug_mode_on
+		clean()
+		print_debug()
 	end
 
 	# For debug purposes
