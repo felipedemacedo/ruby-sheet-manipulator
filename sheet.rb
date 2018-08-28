@@ -109,8 +109,15 @@ class Sheet
 					end
 				end
 			elsif lines.instance_of? Hash
+				amount_of_columns = @header.size
+				column_index = 0
 		  		lines.each do |column_name, column_value|
-		    		lines[column_name] = method_given.call(column_value)
+		  			column_index%amount_of_columns != 0 ? column_index += 1 : column_index = 1
+		    		if columns_to_be_changed.nil? || columns_to_be_changed.include?(column_index - 1)
+		    			lines[column_name] = method_given.call(column_value)
+		    		else
+		    			lines[column_name] = column_value
+		    		end
 		  		end
 			end
 		end
