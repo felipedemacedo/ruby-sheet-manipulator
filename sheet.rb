@@ -85,20 +85,6 @@ class Sheet
       end
 	end
 
-	def upcase()
-	  @data.collect! do |line|
-	    if line.instance_of? String
-		  line = line.to_s.upcase
-		elsif line.instance_of? Array
-		  line.collect!{|x| x.to_s.upcase}
-		elsif line.instance_of? Hash
-		  line.each do |header, val|
-		    line[header] = val.to_s.upcase
-		  end
-		end
-      end
-	end
-
 	def apply(method_given, columns_to_be_changed=nil)
 		if !columns_to_be_changed.nil? && @@debug_mode_on
 			puts "****************************SPECIFIC COLUMNS: [#{columns_to_be_changed.join(',')}]"
