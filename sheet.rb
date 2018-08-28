@@ -121,7 +121,7 @@ class Sheet
 		  		end
 			end
 		end
-		clean()
+		clean() if method_given.name == 'remove_blank_lines'
 		puts "#{method_given.name.upcase} APPLIED !" if @@debug_mode_on
 		print_debug()
 	end
@@ -175,15 +175,17 @@ class Sheet
 		backup()
 		@data = @data.uniq
 		puts "UNIQ APPLIED !" if @@debug_mode_on
-		clean()
 		print_debug()
 	end
 
-	def sort()
+	# Sort by first column if no specific column has been passed as parameter or if the column given as parameter does not exist in the sheet.
+	def sort(specific_column=nil)
 		backup()
-		@data = @data.sort
+		col = @header[0]
+		col = @header[specific_column[0]] if !specific_column.nil? && specific_column.size == 1 && specific_column[0] < @header.size
+		@data = @data.sort_by{|h| h[col].to_s} if @load_type == Hash
+		@data = @data.sort() if @load_type == Array
 		puts "SORT APPLIED !" if @@debug_mode_on
-		clean()
 		print_debug()
 	end
 
