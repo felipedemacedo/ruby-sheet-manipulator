@@ -141,23 +141,23 @@ class Sheet
 	end
 
 	def downcase(params=nil)
-		apply(method(:apply_downcase))
+		apply(method(:apply_downcase), params)
 	end
 
 	def skip_line_breaks(params=nil)
-		apply(method(:remove_line_breaks))
+		apply(method(:remove_line_breaks), params)
 	end
 
 	def skip_whitespaces(params=nil)
-		apply(method(:remove_whitespaces))
+		apply(method(:remove_whitespaces), params)
 	end
 
 	def skip_numeric(params=nil)
-		apply(method(:remove_numerics))
+		apply(method(:remove_numerics), params)
 	end
 
 	def skip_non_numeric(params=nil)
-		apply(method(:remove_non_numerics))
+		apply(method(:remove_non_numerics), params)
 	end
 
 	def skip_blank_lines()
