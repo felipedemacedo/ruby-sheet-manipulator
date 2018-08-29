@@ -17,6 +17,7 @@
 #
 
 class Sheet
+	BLANK_LINES_REGEX = /^ *( *; *)*$/
 	@@debug_mode_on = true
 
 	attr_accessor :path, :file, :header, :data, :data_backup, :load_type
@@ -99,11 +100,11 @@ class Sheet
 					  column
 					end
 				end
+				lines
 			elsif lines.instance_of? Array
 				lines.collect! do |column|
 					if columns_to_be_changed.nil? || (!columns_to_be_changed.nil? && columns_to_be_changed.include?(lines.find_index(column)))
 					  column = method_given.call(column)
-					  #puts "column: #{column}"
 					else
 					  column
 					end
@@ -238,7 +239,7 @@ class Sheet
 	end
 	
 	def remove_blank_lines(str)
-		return str if !(str =~ /^ *( *; *)*$/)
+		return str if !(str =~ BLANK_LINES_REGEX)
 	end
 
 	def remove_whitespaces(str)
@@ -264,8 +265,10 @@ class Sheet
 	def clean()
 		if @load_type == Hash
 			@data.delete_if{|x| x.values.uniq == [nil] || x.values.uniq == [] }
-		else
+		elsif @load_type == Array
 			@data.delete_if{|x| x.uniq == [nil] || x.uniq == [] }
+		elsif @load_type == String
+			@data.delete_if{|x| x =~ BLANK_LINES_REGEX }
 		end
 	end
 
