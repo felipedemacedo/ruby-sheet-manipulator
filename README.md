@@ -302,6 +302,32 @@ REMOVE_NUMERICS APPLIED !
 ["", "", "\n"]
 --
 ```
+### Remove all non-numeric elements from the sheet.
+```markdown
+sheet.skip_non_numeric()
+------------------------------------------------------
+** BACKUP STORED !
+REMOVE_NON_NUMERICS APPLIED !
+  DATA: 
+["", "", ""]
+["123", "", ""]
+["12", "", ""]
+["", ""]
+["", "", ""]
+["78", "90", ""]
+["", "", ""]
+[""]
+[""]
+[""]
+["", "", ""]
+[""]
+[""]
+["", "", "", "", "", ""]
+[""]
+["", "", ""]
+[]
+--
+```
 ### You can always come back and undo last change.
 ```markdown
 sheet.skip_numeric()
