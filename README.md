@@ -401,3 +401,88 @@ APPLY_UPCASE APPLIED !
 ["", "", "\n"]
 --
 ```
+### Create your own methods and apply it over the sheet (on specific columns if you want)!
+For example, let's say you have two methods. The first one duplicates whatever it receives as parameter.
+The second one concatenates a string for every cell it gets.
+```markdown
+def myFirstMethod(str)
+  str*2 unless str.nil?
+end
+
+def mySecondMethod(str)
+  str + " << OK." unless str.nil?
+end
+
+sheet.apply(method(:myFirstMethod))
+sheet.rollback()
+sheet.apply(method(:mySecondMethod))
+sheet.rollback()
+sheet.apply(method(:mySecondMethod), [0])
+------------------------------------------------------
+** BACKUP STORED !
+MYFIRSTMETHOD APPLIED !
+  DATA: 
+["", "", "\n\n"]
+["123123", "456   456   ", "789\n789\n"]
+["1212", "   34   34", "56\n56\n"]
+["", "\n\n"]
+["", "", "\n\n"]
+["7878", "9090", "1   \n1   \n"]
+["aa", "bb", "c\nc\n"]
+["\n\n"]
+["\n\n"]
+["\n\n"]
+["dDdD", "EeEe", "fF\nfF\n"]
+["\n\n"]
+["\n\n"]
+["", "", "", "", "", "\n\n"]
+["\n\n"]
+["", "", "\n\n"]
+[]
+--
+** ROLLED BACK !
+** BACKUP STORED !
+MYSECONDMETHOD APPLIED !
+  DATA: 
+[" << OK.", " << OK.", "\n << OK."]
+["123 << OK.", "456    << OK.", "789\n << OK."]
+["12 << OK.", "   34 << OK.", "56\n << OK."]
+[" << OK.", "\n << OK."]
+[" << OK.", " << OK.", "\n << OK."]
+["78 << OK.", "90 << OK.", "1   \n << OK."]
+["a << OK.", "b << OK.", "c\n << OK."]
+["\n << OK."]
+["\n << OK."]
+["\n << OK."]
+["dD << OK.", "Ee << OK.", "fF\n << OK."]
+["\n << OK."]
+["\n << OK."]
+[" << OK.", " << OK.", " << OK.", " << OK.", " << OK.", "\n << OK."]
+["\n << OK."]
+[" << OK.", " << OK.", "\n << OK."]
+[]
+--
+** ROLLED BACK !
+****************************SPECIFIC COLUMNS: [0]
+** BACKUP STORED !
+MYSECONDMETHOD APPLIED !
+  DATA: 
+[" << OK.", "", "\n"]
+["123 << OK.", "456   ", "789\n"]
+["12 << OK.", "   34", "56\n"]
+[" << OK.", "\n"]
+[" << OK.", "", "\n"]
+["78 << OK.", "90", "1   \n"]
+["a << OK.", "b", "c\n"]
+["\n << OK."]
+["\n << OK."]
+["\n << OK."]
+["dD << OK.", "Ee", "fF\n"]
+["\n << OK."]
+["\n << OK."]
+[" << OK.", "", "", "", "", "\n"]
+["\n << OK."]
+[" << OK.", "", "\n"]
+[]
+--
+```
