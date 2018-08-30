@@ -219,6 +219,20 @@ class Sheet
 		end
 	end
 
+	def save()
+		begin
+			#close_file()
+			#@file = nil
+			new_file = File.open(@path.sub(/\.\w*$/,'.bak') , 'w'){|f| f.puts @data}
+			#File.delete(@path) if File.exist?(@path)
+			#File.rename(@path+'.bak', @path) if File.exist?(@path+'.bak')
+		rescue Exception => e
+			puts e.inspect
+		ensure
+			File.delete(@path+'.bak') if File.exist?(@path+'.bak')
+		end
+	end
+
 	private
 
     def numeric?(value)
@@ -294,22 +308,7 @@ end
 # USAGE EXAMPLES:
 
 sheet = Sheet.new("./example_sheets/skip_blank_lines/sheet.csv")
-sheet.load_as_hash()
-puts "Sheet Header: #{sheet.header.inspect}"
+sheet.load()
+#puts "Sheet Header: #{sheet.header.inspect}"
 
-#sheet.skip_blank_lines()
-#sheet.skip_whitespaces([0])
-#sheet.skip_whitespaces()
-#sheet.skip_line_breaks([2])
-#sheet.skip_line_breaks()
-#sheet.uniq()
-#sheet.sort()
-#sheet.upcase([0])
-#sheet.upcase()
-#sheet.downcase([1,2])
-#sheet.downcase()
-#sheet.skip_numeric([0])
-#sheet.skip_numeric()
-#sheet.rollback()
-#sheet.skip_non_numeric([1])
-#sheet.skip_non_numeric()
+sheet.save()
