@@ -219,13 +219,14 @@ class Sheet
 		end
 	end
 
-	def save()
+	def save(name="_new.csv")
 		begin
-			#close_file()
-			#@file = nil
-			new_file = File.open(@path.sub(/\.\w*$/,'.bak') , 'w'){|f| f.puts @data}
-			#File.delete(@path) if File.exist?(@path)
-			#File.rename(@path+'.bak', @path) if File.exist?(@path+'.bak')
+			if @load_type == String
+				new_file = File.open(@path.sub(/\.\w*$/,name) , 'w') do |f| f.puts @header end
+			elsif @load_type == ( Array || Hash )
+				new_file = File.open(@path.sub(/\.\w*$/,name) , 'w') do |f| f.puts @header.join(@column_separator) end
+			end
+			new_file = File.open(@path.sub(/\.\w*$/,name) , 'a') do |f| f.write @data end
 		rescue Exception => e
 			puts e.inspect
 		ensure
